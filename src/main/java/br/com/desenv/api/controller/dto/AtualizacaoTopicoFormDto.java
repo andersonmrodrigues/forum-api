@@ -1,14 +1,14 @@
 package br.com.desenv.api.controller.dto;
 
-import br.com.desenv.api.model.Curso;
 import br.com.desenv.api.model.Topico;
-import br.com.desenv.api.repository.CursoRepository;
+import br.com.desenv.api.repository.TopicoRepository;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class TopicoFormDto {
+public class AtualizacaoTopicoFormDto {
+
 
     @NotNull
     @NotEmpty
@@ -19,10 +19,6 @@ public class TopicoFormDto {
     @NotEmpty
     @Length(min = 10)
     private String mensagem;
-
-    @NotNull
-    @NotEmpty
-    private String nomeCurso;
 
     public String getTitulo() {
         return titulo;
@@ -40,16 +36,10 @@ public class TopicoFormDto {
         this.mensagem = mensagem;
     }
 
-    public String getNomeCurso() {
-        return nomeCurso;
-    }
-
-    public void setNomeCurso(String nomeCurso) {
-        this.nomeCurso = nomeCurso;
-    }
-
-    public Topico converter(CursoRepository cursoRepository) {
-        Curso curso = cursoRepository.findByNome(this.nomeCurso);
-        return new Topico(this.titulo, this.mensagem, curso);
+    public Topico atualizar(Long id, TopicoRepository topicoRepository) {
+        Topico topico = topicoRepository.getOne(id);
+        topico.setTitulo(this.titulo);
+        topico.setMensagem(this.mensagem);
+        return topico;
     }
 }
