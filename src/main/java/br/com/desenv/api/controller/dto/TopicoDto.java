@@ -1,10 +1,9 @@
 package br.com.desenv.api.controller.dto;
 
 import br.com.desenv.api.model.Topico;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class TopicoDto {
 
@@ -20,8 +19,8 @@ public class TopicoDto {
         this.dataCriacao = topico.getDataCriacao();
     }
 
-    public static List<TopicoDto> converter(List<Topico> topicoList) {
-        return topicoList.stream().map(TopicoDto::new).collect(Collectors.toList());
+    public static Page<TopicoDto> converter(Page<Topico> topicoList) {
+        return topicoList.map(TopicoDto::new);
     }
 
     public Long getId() {
