@@ -19,6 +19,33 @@
 					"port": "8080",
 					"path": [
 						"topicos"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "id,desc",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "titulo,asc",
+							"disabled": true
+						},
+						{
+							"key": "nomeCurso",
+							"value": "HTML 5",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -29,7 +56,18 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:8080/topicos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topicos",
+						"3"
+					]
+				}
 			},
 			"response": []
 		},
@@ -51,7 +89,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titulo\":\"\",\r\n    \"mensagem\":\"\",\r\n    \"nomeCurso\":\"Spring Boot\"\r\n}"
+					"raw": "{\r\n    \"titulo\":\"teste\",\r\n    \"mensagem\":\"tasdasdasdasdasdasdasdas1\",\r\n    \"nomeCurso\":\"Spring Boot\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/topicos",
@@ -100,10 +138,20 @@
 		{
 			"name": "REMOVE TOPICO",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJGb3J1bSBBUEkiLCJzdWIiOiIxIiwiaWF0IjoxNjE5NjE5MzYxLCJleHAiOjE2MTk3MDU3NjF9.5lsJe1Ui9RHpoKOjUqvTNKWckhTR9UjumlXUi0hbhd4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/topicos/3",
+					"raw": "http://localhost:8080/topicos/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -111,7 +159,55 @@
 					"port": "8080",
 					"path": [
 						"topicos",
-						"3"
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AUTH",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"aluno@email.com\",\r\n    \"senha\": \"123456\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTUATOR",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator"
 					]
 				}
 			},
